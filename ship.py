@@ -1,6 +1,6 @@
 import pygame
 class Ship():
-    def __init__(self,screen,ai_settings):
+    def __init__(self,ai_settings,screen):
         """初始化飞船设置和初始化位置"""
         self.screen =screen
         self.ai_settings = ai_settings
