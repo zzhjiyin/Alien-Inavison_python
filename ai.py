@@ -13,7 +13,7 @@ def run_game():
     screen = pygame.display.set_mode((ai_settings.screen_width,ai_settings.screen_height)) #屏幕尺寸
     pygame.display.set_caption('Alian Invasion')
     #创建play按钮
-    play_button = Button(ai_settings,screen,"Play")
+    play_button = Button(ai_settings,screen,"Start")
     bg_color = (230,230,230)  # 背景颜色
     ship = Ship(ai_settings,screen) #初始化飞船,参数顺序不能反
     stats = GameStats(ai_settings)
@@ -22,7 +22,7 @@ def run_game():
     gf.create_fleet(ai_settings,screen,ship,aliens)
     while True:
         #监视鼠标和键盘事件
-        gf.check_events(ai_settings,screen,ship,bullets)
+        gf.check_events(ai_settings,screen,stats,play_button,ship,bullets)
         if stats.game_active:
             ship.update()
             gf.update_bullets(ai_settings,screen,ship,aliens,bullets)
