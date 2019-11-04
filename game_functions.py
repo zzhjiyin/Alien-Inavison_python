@@ -41,7 +41,7 @@ def check_events(ai_settings,screen,ship,bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_events(event,ship)
 
-def update_screen(ai_settings,screen,ship,aliens,bullets):
+def update_screen(ai_settings,screen,stats,ship,aliens,bullets,play_button):
     """更新屏幕新的图像，并切换新的屏幕"""
     # 每次循环重绘屏幕
     screen.fill(ai_settings.bg_color)
@@ -51,6 +51,8 @@ def update_screen(ai_settings,screen,ship,aliens,bullets):
 
     ship.blitme()
     aliens.draw(screen)
+    if not stats.game_active:
+        play_button.draw_button()
     # 绘制屏幕最近可见
     pygame.display.flip()
 
@@ -121,7 +123,7 @@ def update_aliens(ai_settings,stats,screen,ship,aliens,bullets):
     #检测外星人和飞船碰撞
    if pygame.sprite.spritecollideany(ship,aliens):
        ship_hit(ai_settings,stats,screen,ship,aliens,bullets)
-
+   check_aliens_bottom(ai_settings,stats,screen,ship,aliens,bullets)
 def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     """响应被外星人撞的飞船"""
     if stats.ship_left > 0:
