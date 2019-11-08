@@ -1,9 +1,11 @@
 import pygame
-class Ship():
+from pygame.sprite import Sprite
+class Ship(Sprite):
     def __init__(self,ai_settings,screen):
         """初始化飞船设置和初始化位置"""
         self.screen =screen
         self.ai_settings = ai_settings
+        super(Ship, self).__init__()
         #加载飞船图形并获取外接矩阵
         self.image = pygame.image.load('ship.bmp') #返回一个图形surface属性
         self.rect =self.image.get_rect()  #获取surface的rect属性
